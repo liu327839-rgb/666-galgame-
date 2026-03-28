@@ -1,0 +1,83 @@
+/* 1. 游戏主容器：16:9 比例的核心 */
+.game-container {
+    width: 90vw;                 /* 宽度占屏幕 90% */
+    aspect-ratio: 16 / 9;    /* 强制保持 16:9 比例 */
+    margin: 50px auto;           /* 居中显示 */
+    position: relative;;      /* 作为子元素的参考坐标系 */
+     overflow: hidden;       /* 超出的部分隐藏 */
+    border: 5px solid #fff;      /* 加个白边框更像游戏 */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* 2. 背景图：全屏覆盖 */
+.background {
+   .background {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center 80%;
+    z-index: 1;
+    transition: opacity 0.8s ease-in-out;
+}
+}
+
+/* 3. 角色立绘：居中且底部对齐 */
+.character-sprite {
+    position: absolute;
+    bottom: 0;               
+    left: 50%;                   /* 先移动到容器一半的位置 */
+    transform: translateX(-50%); /* 再往左移回自身的一半，实现真正的水平居中 */
+    z-index: 2;                  /* 在背景之上 */
+}
+
+.character-sprite img {
+    height: 100vh;       /* 角色立绘占满整个视口高度 */
+    width: auto;        /* 宽度自动调整，保持比例 */
+    display: block;
+    object-fit: contain;
+}
+
+/* 4. 对话框：半透明设计 */
+.dialogue-box {
+    position: absolute;
+    bottom: 0px;
+    left: 5%;
+    right: 5%;
+    height: 20vh;
+    background: rgba(198, 137, 180, 0.502); 
+    border: 2px solid rgba(100, 109, 183, 0.505);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    z-index: 3;                  /* 在最上层 */
+}
+
+.name-tag {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #8d87d9;             
+    margin-bottom: 10px;
+}
+
+.dialogue-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+}
+
+
+
+/* 临时变黑的类 */
+.bg-black {
+    opacity: 0.5;
+}
+
+@keyframes speaking-bounce {
+    0% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-10px); } /* 向上弹10px */
+    100% { transform: translateX(-50%) translateY(0); }
+}
+
+.is-speaking {
+    animation: speaking-bounce 0.4s infinite; /* 循环播放 */
+}
+
